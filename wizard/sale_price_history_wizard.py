@@ -36,7 +36,7 @@ class SalePriceHistoryWizard(models.TransientModel):
             rows = []
             for line in lines:
                 order_name = escape(line.order_id.name or '')
-                order_id = line.order_id.id
+                order_url = f'/odoo/sales/{line.order_id.id}'
                 date = (
                     format_datetime(self.env, line.order_id.date_order)
                     if line.order_id.date_order else ''
@@ -51,8 +51,11 @@ class SalePriceHistoryWizard(models.TransientModel):
                 rows.append(
                     '<tr>'
                     f'<td class="align-middle o_ph_order">'
-                    f'<a href="#" data-oe-model="sale.order" data-oe-id="{order_id}">'
-                    f'<strong>{order_name}</strong></a></td>'
+                    f'<a href="{order_url}" target="_blank" rel="noopener" '
+                    f'class="o_ph_link" title="Abrir orden en pestaña nueva">'
+                    f'<strong>{order_name}</strong>'
+                    f' <i class="fa fa-external-link fa-xs ms-1"/>'
+                    f'</a></td>'
                     f'<td class="align-middle">{escape(date)}</td>'
                     f'<td class="align-middle text-end">{qty}</td>'
                     f'<td class="align-middle text-end o_ph_price">{escape(price)}</td>'
