@@ -21,22 +21,8 @@
                 </div>
 
                 <div class="o_price_history_body">
-                    <field name="line_ids" nolabel="1">
-                        <list create="0" edit="0" delete="0" duplicate="0"
-                              default_order="price_unit asc">
-                            <field name="order_id" string="Orden"/>
-                            <field name="date_order" string="Fecha"/>
-                            <field name="product_uom_qty" string="Cantidad"/>
-                            <field name="price_unit" string="Precio unitario"/>
-                            <field name="discount" string="Desc. %"/>
-                            <field name="price_subtotal" string="Subtotal"/>
-                            <field name="currency_id" column_invisible="1"/>
-                            <field name="state" string="Estado"
-                                   decoration-success="state == 'sale'"
-                                   decoration-muted="state == 'done'"
-                                   widget="badge"/>
-                        </list>
-                    </field>
+                    <field name="line_ids" invisible="1"/>
+                    <field name="history_html" nolabel="1" readonly="1" widget="html"/>
                 </div>
 
                 <footer>

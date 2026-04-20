@@ -48,22 +48,10 @@ class SaleOrderLine(models.Model):
                 },
             }
 
-        wizard_lines = [(0, 0, {
-            'sale_order_line_id': line.id,
-            'order_id': line.order_id.id,
-            'date_order': line.order_id.date_order,
-            'product_uom_qty': line.product_uom_qty,
-            'price_unit': line.price_unit,
-            'discount': line.discount,
-            'price_subtotal': line.price_subtotal,
-            'state': line.state,
-            'currency_id': line.currency_id.id,
-        }) for line in lines]
-
         wizard = self.env['sale.price.history.wizard'].create({
             'partner_id': partner.id,
             'product_id': product.id,
-            'line_ids': wizard_lines,
+            'line_ids': [(6, 0, lines.ids)],
         })
 
         return {
