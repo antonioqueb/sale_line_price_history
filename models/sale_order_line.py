@@ -7,8 +7,8 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     def action_view_price_history(self):
-        """Abre un popup con el historial de ventas del mismo producto
-        al mismo cliente. Si no hay historial, muestra una notificación.
+        """Abre un popup grande con el historial de ventas del mismo producto
+        al mismo cliente, ordenado por precio unitario ascendente.
         """
         self.ensure_one()
 
@@ -20,8 +20,6 @@ class SaleOrderLine(models.Model):
         if not product:
             raise UserError(_("Selecciona primero el producto en la línea."))
 
-        # Consideramos también al parent del cliente (facturación vs contactos)
-        # para no perder historial por contactos hijos del mismo cliente.
         partner_ids = [partner.id]
         if partner.parent_id:
             partner_ids.append(partner.parent_id.id)
@@ -32,7 +30,6 @@ class SaleOrderLine(models.Model):
             ('state', 'in', ['sale', 'done']),
             ('product_uom_qty', '>', 0),
         ]
-        # Excluir la línea actual si ya está guardada
         if isinstance(self.id, int):
             domain.append(('id', '!=', self.id))
 
@@ -57,7 +54,6 @@ class SaleOrderLine(models.Model):
         wizard = self.env['sale.price.history.wizard'].create({
             'partner_id': partner.id,
             'product_id': product.id,
-            'current_price_unit': self.price_unit or 0.0,
             'line_ids': [(6, 0, lines.ids)],
         })
 
@@ -68,4 +64,5 @@ class SaleOrderLine(models.Model):
             'view_mode': 'form',
             'res_id': wizard.id,
             'target': 'new',
+            'context': {'dialog_size': 'extra-large'},
         }
