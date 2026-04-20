@@ -5,10 +5,8 @@
     'description': """
 Agrega un ícono de historial en cada línea de la orden de venta.
 Al pulsarlo abre un popup con las ventas anteriores del mismo producto
-al mismo cliente, mostrando número de orden, precio unitario, cantidad,
-descuento y subtotal, más un resumen con precio mínimo, máximo, promedio
-y último precio.
-Si no hay historial, muestra una notificación discreta y no abre popup.
+al mismo cliente, ordenadas por precio unitario.
+Si no hay historial, muestra una notificación y no abre popup.
     """,
     'author': 'Alphaqueb Consulting SAS',
     'website': 'https://alphaqueb.com',
@@ -20,6 +18,11 @@ Si no hay historial, muestra una notificación discreta y no abre popup.
         'wizard/sale_price_history_wizard_view.xml',
         'views/sale_order_view.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'sale_line_price_history/static/src/scss/sale_price_history.scss',
+        ],
+    },
     'installable': True,
     'application': False,
     'auto_install': False,

@@ -1,0 +1,156 @@
+// ============================================================
+// Sale Line Price History — estilos del popup
+// ============================================================
+
+// Expande el modal que contiene el historial al 95% del viewport.
+// Usa :has() para apuntar solo a los modales de este wizard.
+.modal:has(.o_sale_price_history_form) {
+    .modal-dialog {
+        max-width: 95vw !important;
+        width: 95vw;
+        margin: 1.5rem auto;
+    }
+
+    .modal-content {
+        max-height: 92vh;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .modal-body {
+        padding: 0 !important;
+    }
+
+    .modal-header,
+    .modal-footer {
+        padding: 0.85rem 1.5rem;
+    }
+}
+
+// ============================================================
+// Form interno
+// ============================================================
+.o_sale_price_history_form {
+    background-color: #ffffff;
+
+    // --- Header con producto y cliente ---
+    .o_price_history_header {
+        padding: 1.75rem 2rem 1.25rem;
+        border-bottom: 2px solid #e9ecef;
+        background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+
+        .o_price_history_product {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.35rem;
+
+            .fa-history {
+                color: #714b67; // Odoo brand
+                font-size: 1.3rem;
+            }
+
+            .o_field_widget {
+                font-weight: 600;
+            }
+        }
+
+        .o_price_history_partner {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #6c757d;
+            margin: 0;
+
+            .fa-user {
+                color: #adb5bd;
+            }
+        }
+    }
+
+    // --- Cuerpo con la tabla ---
+    .o_price_history_body {
+        padding: 1.25rem 2rem 1.5rem;
+
+        .o_field_x2many_list {
+            width: 100%;
+        }
+
+        .o_list_renderer {
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+            // Ocultar el "Add a line" del list aunque ya esté en create="0"
+            .o_field_x2many_list_row_add {
+                display: none !important;
+            }
+
+            table.o_list_table {
+                margin-bottom: 0;
+                width: 100%;
+
+                thead {
+                    th {
+                        background-color: #f8f9fa;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        font-size: 0.72rem;
+                        letter-spacing: 0.6px;
+                        color: #495057;
+                        padding: 0.85rem 1rem;
+                        border-bottom: 2px solid #dee2e6;
+                        white-space: nowrap;
+                    }
+                }
+
+                tbody {
+                    tr.o_data_row {
+                        td {
+                            padding: 0.75rem 1rem;
+                            vertical-align: middle;
+                            border-top: 1px solid #f1f3f5;
+                        }
+
+                        &:hover {
+                            background-color: #f8f9fa;
+                        }
+
+                        // Resaltar el precio unitario
+                        td[name="price_unit"] {
+                            color: #28a745;
+                            font-weight: 700;
+                            font-size: 1.02em;
+                        }
+
+                        // Subtotal en negrita suave
+                        td[name="price_subtotal"] {
+                            font-weight: 600;
+                            color: #343a40;
+                        }
+
+                        // Orden clickeable
+                        td[name="order_id"] {
+                            .o_field_widget {
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // --- Footer ---
+    footer {
+        padding: 1rem 2rem;
+        border-top: 1px solid #e9ecef;
+        background-color: #fafbfc;
+    }
+}
