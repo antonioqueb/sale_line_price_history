@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_price_history" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.price.history</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Botón en la vista de lista editable de las líneas -->
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']" position="before">
+                <button name="action_view_price_history"
+                        type="object"
+                        icon="fa-history"
+                        title="Ver historial de precios para este cliente"
+                        class="btn btn-link p-0"
+                        invisible="not product_id or not parent.partner_id"/>
+            </xpath>
+
+            <!-- Botón también en la vista form emergente de la línea -->
+            <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="before">
+                <button name="action_view_price_history"
+                        type="object"
+                        icon="fa-history"
+                        string="Historial de precios"
+                        class="btn btn-link oe_inline"
+                        invisible="not product_id or not parent.partner_id"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

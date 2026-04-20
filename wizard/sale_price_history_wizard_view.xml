@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_price_history_wizard_form" model="ir.ui.view">
+        <field name="name">sale.price.history.wizard.form</field>
+        <field name="model">sale.price.history.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Historial de precios">
+                <field name="company_currency_id" invisible="1"/>
+                <sheet>
+                    <div class="oe_title">
+                        <h2 class="mb-0">
+                            <i class="fa fa-history me-2 text-primary"/>
+                            <field name="product_id" nolabel="1" readonly="1"
+                                   options="{'no_open': True, 'no_create': True}"/>
+                        </h2>
+                        <h4 class="text-muted mt-1">
+                            <i class="fa fa-user me-1"/>
+                            <field name="partner_id" nolabel="1" readonly="1" class="oe_inline"
+                                   options="{'no_open': True, 'no_create': True}"/>
+                        </h4>
+                    </div>
+
+                    <group col="10" class="o_group_summary mt-2">
+                        <field name="sale_count" string="Ventas"/>
+                        <field name="last_price" string="Último"/>
+                        <field name="min_price" string="Mínimo"/>
+                        <field name="max_price" string="Máximo"/>
+                        <field name="avg_price" string="Promedio"/>
+                    </group>
+
+                    <separator string="Ventas anteriores al mismo cliente"/>
+                    <field name="line_ids" nolabel="1" readonly="1">
+                        <list create="0" edit="0" delete="0" duplicate="0" default_order="id desc">
+                            <field name="order_id" string="Orden"/>
+                            <field name="order_partner_id" string="Cliente" optional="hide"/>
+                            <field name="create_date" string="Fecha" optional="show"/>
+                            <field name="product_uom_qty" string="Cant."/>
+                            <field name="price_unit" string="Precio unitario"/>
+                            <field name="discount" string="Desc. %" optional="show"/>
+                            <field name="price_subtotal" string="Subtotal"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="state" string="Estado" optional="hide"/>
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button string="Cerrar" special="cancel" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
