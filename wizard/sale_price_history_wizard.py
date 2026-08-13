@@ -38,7 +38,8 @@ class SalePriceHistoryWizard(models.TransientModel):
                 order_name = escape(line.order_id.name or '')
                 order_url = f'/odoo/sales/{line.order_id.id}'
                 date = (
-                    format_datetime(self.env, line.order_id.date_order)
+                    format_datetime(self.env, line.order_id.date_order,
+                                    dt_format='dd MMM yyyy HH:mm')
                     if line.order_id.date_order else ''
                 )
                 qty = f"{line.product_uom_qty:,.2f}"
