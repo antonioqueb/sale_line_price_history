@@ -1,6 +1,6 @@
 {
     'name': 'Sale Line Price History',
-    'version': '19.0.1.1.0',
+    'version': '19.0.1.2.0',
     'summary': 'Historial de precios de venta por cliente y producto en la línea de SO',
     'description': """
 Agrega un ícono de historial en cada línea de la orden de venta.

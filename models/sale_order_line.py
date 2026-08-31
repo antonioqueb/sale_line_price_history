@@ -22,6 +22,8 @@ class SaleOrderLine(models.Model):
             partner_ids.append(partner.parent_id.id)
 
         domain = [
+            # Historial acotado a las compañías seleccionadas en el switcher.
+            ('company_id', 'in', self.env.companies.ids),
             ('product_id', '=', product.id),
             ('order_partner_id', 'in', partner_ids),
             ('state', 'in', ['sale', 'done']),
