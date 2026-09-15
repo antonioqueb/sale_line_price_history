@@ -9,12 +9,12 @@
 
                 <div class="o_price_history_header">
                     <div class="o_price_history_product">
-                        <i class="fa fa-history"/>
+                        <i class="fa fa-history" title="Historial"/>
                         <field name="product_id" nolabel="1" readonly="1" class="oe_inline"
                                options="{'no_open': True, 'no_create': True}"/>
                     </div>
                     <div class="o_price_history_partner">
-                        <i class="fa fa-user"/>
+                        <i class="fa fa-user" title="Usuario"/>
                         <field name="partner_id" nolabel="1" readonly="1" class="oe_inline"
                                options="{'no_open': True, 'no_create': True}"/>
                     </div>
